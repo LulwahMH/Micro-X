@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مبادرة البرامج الجامعية القصيرة MicroX — لوحة تعريفية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Cairo:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F4FA;
+  --card:#FFFFFF;
+  --ink:#241B33;
+  --muted:#6B6280;
+  --line:#E8E3F1;
+  --purple:#6D28D9;       /* الجامعة */
+  --purple-deep:#4C1D95;
+  --purple-soft:#F1EAFB;
+  --teal:#0E9C9C;         /* المركز الوطني */
+  --teal-soft:#E2F5F5;
+  --amber:#C77D0A;        /* الهيئة / القطاع */
+  --amber-soft:#FBF1DE;
+  --green:#178A52;        /* الإطلاق */
+  --green-soft:#E3F4EA;
+  --radius:18px;
+  --shadow:0 10px 30px rgba(45,20,90,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"IBM Plex Sans Arabic","Tajawal","Segoe UI",Tahoma,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  min-height:100vh;
+}
+h1,h2,h3,.brand{font-family:"Cairo","IBM Plex Sans Arabic",sans-serif}
+
+/* ===== decorative X strokes (MicroX motif) ===== */
+.x-decor{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.x-decor span{
+  position:absolute;width:38vmax;height:7vmax;border-radius:5vmax;
+  opacity:.35;
+}
+.x-decor span:nth-child(1){background:#E9E1F6;transform:rotate(45deg);top:-4%;right:-14%}
+.x-decor span:nth-child(2){background:#E2EFF0;transform:rotate(-45deg);top:6%;right:-16%}
+.x-decor span:nth-child(3){background:#EFE8F8;transform:rotate(45deg);bottom:-2%;left:-16%}
+.x-decor span:nth-child(4){background:#E6F0EA;transform:rotate(-45deg);bottom:8%;left:-18%}
+
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:28px 22px 70px}
+
+/* ===== header ===== */
+header.hero{
+  background:linear-gradient(135deg,#3B1470 0%,#5B21B6 55%,#6D28D9 100%);
+  color:#fff;border-radius:24px;box-shadow:var(--shadow);
+  padding:34px 36px 30px;position:relative;overflow:hidden;
+}
+header.hero::after{
+  content:"X";position:absolute;left:-30px;bottom:-90px;
+  font-family:"Cairo";font-weight:900;font-size:340px;line-height:1;
+  color:rgba(255,255,255,.06);pointer-events:none;
+}
+.hero .eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);
+  padding:5px 14px;border-radius:99px;font-size:.82rem;letter-spacing:.3px;
+}
+.hero h1{font-size:clamp(1.5rem,3.4vw,2.35rem);font-weight:900;margin:14px 0 6px}
+.hero h1 b{color:#D9C7FF}
+.hero p.sub{max-width:760px;color:#E9E0FA;font-size:1rem}
+.hero .meeting{
+  margin-top:18px;display:flex;flex-wrap:wrap;gap:10px;font-size:.86rem;
+}
+.hero .meeting .chip{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+  border-radius:12px;padding:8px 14px;display:flex;align-items:center;gap:8px;
+}
+.hero .meeting .chip b{font-weight:700}
+
+/* ===== tabs ===== */
+nav.tabs{
+  position:sticky;top:12px;z-index:20;margin:18px 0 26px;
+  display:flex;gap:8px;background:#fff;border:1px solid var(--line);
+  border-radius:99px;padding:7px;box-shadow:var(--shadow);flex-wrap:wrap;
+}
+nav.tabs button{
+  flex:1;min-width:150px;border:0;background:transparent;cursor:pointer;
+  font-family:inherit;font-size:.95rem;font-weight:600;color:var(--muted);
+  padding:11px 16px;border-radius:99px;transition:.25s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+nav.tabs button .n{
+  width:24px;height:24px;border-radius:50%;background:var(--purple-soft);
+  color:var(--purple);display:inline-flex;align-items:center;justify-content:center;
+  font-size:.78rem;font-weight:800;transition:.25s;
+}
+nav.tabs button:hover{color:var(--purple-deep)}
+nav.tabs button.active{background:var(--purple);color:#fff;box-shadow:0 6px 16px rgba(109,40,217,.35)}
+nav.tabs button.active .n{background:rgba(255,255,255,.2);color:#fff}
+nav.tabs button:focus-visible{outline:3px solid #B79CF0;outline-offset:2px}
+
+section.panel{display:none;animation:fadeUp .4s ease}
+section.panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.section-title{display:flex;align-items:center;gap:12px;margin:8px 0 18px}
+.section-title h2{font-size:1.45rem;font-weight:800}
+.section-title .bar{width:46px;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--purple),var(--teal))}
+.section-title p{color:var(--muted);font-size:.92rem}
+
+/* ===== concept ===== */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.def-card{padding:28px 30px;position:relative;overflow:hidden}
+.def-card::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,var(--purple),var(--teal))}
+.def-card h3{font-size:1.15rem;font-weight:800;color:var(--purple-deep);margin-bottom:8px}
+.def-card p{font-size:1.02rem;max-width:900px}
+.def-card p b{color:var(--purple-deep)}
+.def-note{margin-top:14px;background:var(--teal-soft);border-radius:12px;padding:12px 16px;font-size:.92rem;color:#0B6E6E;display:flex;gap:10px;align-items:flex-start}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:20px 0}
+.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 16px;text-align:center;transition:.25s;cursor:default}
+.stat:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(45,20,90,.12);border-color:#D7C8F2}
+.stat .num{font-family:"Cairo";font-size:1.7rem;font-weight:900;color:var(--purple)}
+.stat .num small{font-size:.85rem;font-weight:700;color:var(--muted)}
+.stat .lbl{font-size:.85rem;color:var(--muted);margin-top:2px}
+
+.grid-2{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:6px}
+@media(max-width:900px){.grid-2{grid-template-columns:1fr}}
+
+/* nested hierarchy */
+.hier{padding:22px 24px}
+.hier h3,.pillars h3,.audience h3{font-size:1.05rem;font-weight:800;margin-bottom:14px;color:var(--purple-deep)}
+.layer{border-radius:14px;padding:12px 16px;margin-bottom:0;transition:.25s;cursor:pointer;border:2px solid transparent}
+.layer + .layer{margin-top:10px;margin-inline-start:18px}
+.layer:hover{transform:translateX(-4px)}
+.layer.active{border-color:var(--purple)}
+.layer .t{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:700;font-size:.95rem}
+.layer .t .h{font-size:.78rem;font-weight:700;background:rgba(255,255,255,.7);border-radius:99px;padding:2px 10px;color:#4A3A6A;white-space:nowrap}
+.layer .d{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:.85rem;color:#4A3A6A}
+.layer.active .d{max-height:120px;padding-top:6px}
+.l1{background:#EDE4FA}.l2{background:#F1EAFB}.l3{background:#F6F1FD}.l4{background:#FAF7FE}.l5{background:#FCFAFF;border:1.5px dashed #D9CBF2}
+.hint{font-size:.8rem;color:var(--muted);margin-top:10px}
+
+/* pillars (guiding principles) */
+.pillars{padding:22px 24px}
+.pill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.pill{
+  background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;
+  font-size:.86rem;font-weight:600;cursor:pointer;transition:.2s;text-align:center;
+}
+.pill:hover{border-color:var(--purple);color:var(--purple-deep);transform:translateY(-2px)}
+.pill.active{background:var(--purple);border-color:var(--purple);color:#fff}
+.pill-detail{
+  margin-top:14px;background:var(--purple-soft);border-radius:12px;padding:14px 16px;
+  font-size:.9rem;color:#3D2A63;min-height:74px;transition:.2s;
+}
+.pill-detail b{color:var(--purple-deep)}
+
+.audience{padding:22px 24px;margin-top:18px}
+.aud-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.aud{background:linear-gradient(135deg,#FBFAFE,#F3EEFB);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;font-size:.88rem;font-weight:600;transition:.2s}
+.aud:hover{border-color:#CBB8EE;transform:translateY(-2px)}
+.aud .ic{font-size:1.3rem;display:block;margin-bottom:4px}
+
+/* ===== flowchart ===== */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;font-size:.83rem}
+.legend .lg{display:flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px 13px}
+.dot{width:11px;height:11px;border-radius:50%}
+.dot.u{background:var(--purple)} .dot.c{background:var(--teal)} .dot.s{background:var(--amber)} .dot.g{background:var(--green)}
+
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;row-gap:34px;padding:6px 2px 2px}
+@media(max-width:980px){.flow{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.flow{grid-template-columns:1fr}}
+.step{position:relative;padding:0 10px}
+.step .box{
+  background:#fff;border:2px solid var(--line);border-radius:16px;padding:16px 14px 14px;
+  cursor:pointer;transition:.25s;height:100%;position:relative;
+}
+.step .box:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(45,20,90,.13)}
+.step.selected .box{border-color:currentColor;box-shadow:0 12px 26px rgba(45,20,90,.15)}
+.step .idx{
+  position:absolute;top:-15px;inset-inline-start:16px;width:30px;height:30px;border-radius:50%;
+  color:#fff;font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 10px rgba(0,0,0,.18);
+}
+.step .who{font-size:.72rem;font-weight:700;border-radius:99px;padding:2px 10px;display:inline-block;margin-bottom:8px}
+.step h4{font-size:.97rem;font-weight:800;margin-bottom:4px}
+.step p{font-size:.8rem;color:var(--muted);line-height:1.6}
+.step .arrow{
+  position:absolute;top:50%;inset-inline-end:-13px;transform:translateY(-50%);
+  font-size:1.15rem;color:#B9A8DC;z-index:2;
+}
+@media(max-width:980px){.step .arrow{display:none}}
+.step.u{color:var(--purple)} .step.u .idx{background:var(--purple)} .step.u .who{background:var(--purple-soft);color:var(--purple-deep)}
+.step.c{color:var(--teal)} .step.c .idx{background:var(--teal)} .step.c .who{background:var(--teal-soft);color:#0B6E6E}
+.step.s{color:var(--amber)} .step.s .idx{background:var(--amber)} .step.s .who{background:var(--amber-soft);color:#8A5606}
+.step.g{color:var(--green)} .step.g .idx{background:var(--green)} .step.g .who{background:var(--green-soft);color:var(--green)}
+.step.m{color:var(--purple)} .step.m .idx{background:linear-gradient(135deg,var(--purple),var(--teal))}
+.step.m .who{background:linear-gradient(90deg,var(--purple-soft),var(--teal-soft));color:#3D2A63}
+
+.flow-detail{
+  margin-top:26px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:22px 26px;display:flex;gap:18px;align-items:flex-start;
+}
+.flow-detail .big{
+  min-width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  font-family:"Cairo";font-size:1.4rem;font-weight:900;color:#fff;background:var(--purple);
+}
+.flow-detail h4{font-size:1.08rem;font-weight:800;margin-bottom:4px}
+.flow-detail .meta{font-size:.8rem;color:var(--muted);margin-bottom:8px}
+.flow-detail ul{padding-inline-start:20px;font-size:.9rem}
+.flow-detail ul li{margin-bottom:5px}
+.flow-detail ul li::marker{color:var(--purple)}
+
+.duration{
+  margin-top:18px;display:flex;flex-wrap:wrap;gap:12px;
+}
+.duration .d-card{flex:1;min-width:220px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;font-size:.86rem}
+.duration .d-card b{display:block;color:var(--purple-deep);font-size:.95rem;margin-bottom:2px}
+.duration .d-card span{color:var(--muted)}
+
+/* ===== roles ===== */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px}
+.role{border-radius:var(--radius);border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.role .head{padding:18px 20px 14px;color:#fff;position:relative}
+.role .head .tag{font-size:.72rem;opacity:.9;letter-spacing:.3px}
+.role .head h3{font-size:1.05rem;font-weight:800;margin-top:2px}
+.role.r-c .head{background:linear-gradient(135deg,#0B7A7A,#12AFAF)}
+.role.r-u .head{background:linear-gradient(135deg,#4C1D95,#7C3AED)}
+.role.r-s .head{background:linear-gradient(135deg,#9A6106,#D98E14)}
+.role.r-b .head{background:linear-gradient(135deg,#7A4E9E,#A06FC8)}
+.role ul{list-style:none;padding:14px 18px 8px;flex:1}
+.role ul li{
+  position:relative;padding:7px 26px 7px 4px;font-size:.87rem;border-bottom:1px dashed #EFEAF7;
+}
+.role ul li:last-child{border-bottom:0}
+.role ul li::before{content:"◆";position:absolute;inset-inline-start:4px;top:8px;font-size:.6rem}
+.role.r-c ul li::before{color:var(--teal)}
+.role.r-u ul li::before{color:var(--purple)}
+.role.r-s ul li::before{color:var(--amber)}
+.role.r-b ul li::before{color:#A06FC8}
+.role .more-items{display:none}
+.role.open .more-items{display:block}
+.role .toggle{
+  border:0;background:transparent;font-family:inherit;font-weight:700;font-size:.82rem;
+  color:var(--purple);cursor:pointer;padding:10px 18px 14px;text-align:start;
+}
+.role .toggle:hover{text-decoration:underline}
+
+.partner-note{
+  margin-top:20px;background:linear-gradient(135deg,#FFF9EF,#FDF3E0);
+  border:1px solid #F0DDB8;border-radius:var(--radius);padding:20px 24px;
+}
+.partner-note h3{color:#8A5606;font-size:1.05rem;font-weight:800;margin-bottom:6px}
+.partner-note p{font-size:.92rem;color:#6B5326;max-width:940px}
+
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:.8rem}
+footer b{color:var(--purple-deep)}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="x-decor" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+<div class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">⚡ مبادرة MicroX — البرامج الجامعية القصيرة · برنامج تنمية القدرات البشرية · رؤية 2030</span>
+  <h1>شراكة لبناء برامج جامعية قصيرة في <b>علوم الأرض والمساحة الجيولوجية</b></h1>
+  <p class="sub">لوحة تعريفية معدّة لاجتماع عمادة التعلم الإلكتروني والتعليم عن بعد — جامعة الملك عبدالعزيز مع هيئة المساحة الجيولوجية السعودية، للتعاون في تصميم برامج قصيرة تُقدَّم عبر منصة FutureX التابعة للمركز الوطني للتعليم الإلكتروني وبشهادات معتمدة منه.</p>
+  <div class="meeting">
+    <span class="chip">🏛️ <b>الجامعة:</b> جامعة الملك عبدالعزيز — عمادة التعلم الإلكتروني</span>
+    <span class="chip">⛰️ <b>الشريك القطاعي:</b> هيئة المساحة الجيولوجية السعودية</span>
+    <span class="chip">🖥️ <b>المنصة:</b> FutureX — المركز الوطني للتعليم الإلكتروني</span>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="أقسام اللوحة">
+  <button class="active" role="tab" aria-selected="true" data-panel="p-concept"><span class="n">1</span> مفهوم البرنامج القصير</button>
+  <button role="tab" aria-selected="false" data-panel="p-flow"><span class="n">2</span> رحلة تطوير البرنامج</button>
+  <button role="tab" aria-selected="false" data-panel="p-roles"><span class="n">3</span> الأدوار والمسؤوليات</button>
+</nav>
+
+<!-- ================= المفهوم ================= -->
+<section id="p-concept" class="panel active">
+  <div class="section-title">
+    <span class="bar"></span>
+    <div><h2>ما هو البرنامج الجامعي القصير؟</h2>
+    <p>المفهوم بلغة واضحة وبسيطة، وفق دليل المركز الوطني للتعليم الإلكتروني</p></div>
+  </div>
+
+  <div class="card def-card">
+    <h3>التعريف ببساطة</h3>
+    <p>
+      البرنامج الجامعي القصير هو <b>مؤهل تعليمي مركّز وقصير المدة</b>، يركّز على مهارة أو جدارة محددة يحتاجها سوق العمل،
+      ويُقدَّم <b>إلكترونيًا بالكامل</b> عبر منصة معتمدة من المركز الوطني للتعليم الإلكتروني.
+      يتكوّن البرنامج من <b>مقررين إلى ستة مقررات</b> فقط، وينتهي <b>باختبار شامل حضوري</b> في مراكز اختبار معتمدة،
+      ويحصل المجتاز على <b>شهادة رقمية</b> تحمل شعار الجامعة، معترف بها أكاديميًا ومهنيًا،
+      ويمكن <b>تجميع</b> عدة برامج قصيرة معًا للتقدم نحو مؤهل علمي أعلى وفق الإطار الوطني للمؤهلات.
+    </p>
+    <div class="def-note">💡 <span>باختصار: «تعلّم مهارة محددة، في وقت قصير، عن بُعد وبمرونة كاملة، واحصل على شهادة جامعية معتمدة يمكن البناء عليها لاحقًا».</span></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">2–6</div><div class="lbl">مقررات في البرنامج</div></div>
+    <div class="stat"><div class="num">3–23 <small>ساعة</small></div><div class="lbl">ساعات معتمدة</div></div>
+    <div class="stat"><div class="num">45–345 <small>ساعة</small></div><div class="lbl">ساعات تعلم فعلية</div></div>
+    <div class="stat"><div class="num">≤ 15 <small>ساعة</small></div><div class="lbl">حد أقصى للتعلم أسبوعيًا</div></div>
+    <div class="stat"><div class="num">350 <small>برنامجًا</small></div><div class="lbl">مستهدف المبادرة 2024–2027</div></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card hier">
+      <h3>كيف يُبنى البرنامج؟ — الهيكل من الأكبر إلى الأصغر <span style="font-weight:400;color:var(--muted);font-size:.8rem">(انقري كل طبقة)</span></h3>
+      <div class="layer l1" data-open>
+        <div class="t"><span>🎓 الدرجة العلمية (دبلوم / بكالوريوس / ماجستير)</span><span class="h">24–120 س.م</span></div>
+        <div class="d">المؤهلات المحددة في الإطار الوطني للمؤهلات — يمكن الوصول إليها بتجميع البرامج القصيرة.</div>
+      </div>
+      <div class="layer l2">
+        <div class="t"><span>⚡ البرنامج الجامعي القصير</span><span class="h">3–23 س.م</span></div>
+        <div class="d">من مقررين إلى ستة مقررات، قابل للتجميع مع برامج أخرى لتكوين درجة علمية معتمدة.</div>
+      </div>
+      <div class="layer l3">
+        <div class="t"><span>📘 المقرر</span><span class="h">1–10 س.م</span></div>
+        <div class="d">وحدة دراسية تعادل من 15 إلى 150 ساعة تعلم فعلية.</div>
+      </div>
+      <div class="layer l4">
+        <div class="t"><span>⏱️ الساعة المعتمدة (وحدة تعليمية)</span><span class="h">= 15 ساعة فعلية</span></div>
+        <div class="d">تشمل المحاضرات والتطبيقات والاختبارات وسائر الأنشطة التعليمية.</div>
+      </div>
+      <div class="layer l5">
+        <div class="t"><span>🧩 الكائن التعليمي (DNA)</span><span class="h">أصغر مكوّن</span></div>
+        <div class="d">وحدة محتوى مستقلة قابلة لإعادة الاستخدام: فيديو، نص، نشاط، فصل افتراضي، نقاش… كل منها يحقق هدفًا تعليميًا واحدًا.</div>
+      </div>
+      <p class="hint">كل طبقة تُبنى من الطبقة الأصغر منها — وهذا ما يمنح البرامج مرونتها وقابليتها للتجميع.</p>
+    </div>
+
+    <div>
+      <div class="card pillars">
+        <h3>المبادئ التوجيهية التسعة <span style="font-weight:400;color:var(--muted);font-size:.8rem">(انقري أي مبدأ)</span></h3>
+        <div class="pill-grid" id="pillGrid"></div>
+        <div class="pill-detail" id="pillDetail"><b>اختاري مبدأً</b> لعرض شرحه المبسّط هنا.</div>
+      </div>
+
+      <div class="card audience">
+        <h3>الفئات المستهدفة</h3>
+        <div class="aud-grid">
+          <div class="aud"><span class="ic">💼</span>الملتحقون بسوق العمل</div>
+          <div class="aud"><span class="ic">🎓</span>الطلاب الجامعيون</div>
+          <div class="aud"><span class="ic">🧑‍🎓</span>حديثو التخرج</div>
+          <div class="aud"><span class="ic">🔎</span>الباحثون عن عمل</div>
+          <div class="aud"><span class="ic">🚀</span>رياديو الأعمال</div>
+          <div class="aud"><span class="ic">🌍</span>المتعلمون الدوليون</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= رحلة التطوير ================= -->
+<section id="p-flow" class="panel">
+  <div class="section-title">
+    <span class="bar"></span>
+    <div><h2>رحلة تطوير البرنامج القصير — من الفكرة إلى الإطلاق</h2>
+    <p>انقري أي مرحلة لعرض تفاصيلها والجهة المسؤولة عنها</p></div>
+  </div>
+
+  <div class="legend">
+    <span class="lg"><span class="dot c"></span> المركز الوطني للتعليم الإلكتروني</span>
+    <span class="lg"><span class="dot u"></span> الجامعة (عمادة التعلم الإلكتروني)</span>
+    <span class="lg"><span class="dot s"></span> الشريك القطاعي (هيئة المساحة الجيولوجية)</span>
+    <span class="lg"><span class="dot g"></span> الإطلاق</span>
+  </div>
+
+  <div class="flow" id="flow"></div>
+
+  <div class="flow-detail" id="flowDetail">
+    <div class="big" id="fdNum">1</div>
+    <div>
+      <h4 id="fdTitle"></h4>
+      <div class="meta" id="fdMeta"></div>
+      <ul id="fdList"></ul>
+    </div>
+  </div>
+
+  <div class="duration">
+    <div class="d-card"><b>⏳ المدة المتوقعة للمسار الكامل: نحو 3 أشهر</b><span>عند بناء برنامج مستحدث ومحتواه غير موجود (وهو الأنسب لبرامج علوم الأرض المتخصصة).</span></div>
+    <div class="d-card"><b>⚡ مسارات أسرع (أسبوعان – شهران)</b><span>إذا كان المحتوى موجودًا لدى الجامعة أو لدى الهيئة ويحتاج فقط إلى مواءمة مع إطار البرنامج القصير.</span></div>
+    <div class="d-card"><b>💰 التكاليف</b><span>يتحمل المركز الوطني تكلفة الترخيص واستضافة المنصة والرقمنة، وتحدد الجامعة رسوم البرنامج (بحد أقصى 2000 ريال للساعة المعتمدة).</span></div>
+  </div>
+</section>
+
+<!-- ================= الأدوار ================= -->
+<section id="p-roles" class="panel">
+  <div class="section-title">
+    <span class="bar"></span>
+    <div><h2>الأدوار والمسؤوليات</h2>
+    <p>المبادرة شراكة متكاملة — لكل جهة دور جوهري في إنجاحها</p></div>
+  </div>
+
+  <div class="roles">
+    <div class="role r-c">
+      <div class="head"><div class="tag">الممكّن الرئيسي والمشرف</div><h3>المركز الوطني للتعليم الإلكتروني</h3></div>
+      <ul>
+        <li>الإشراف الإداري والتنظيمي وإعداد السياسات ومعايير الترخيص وإصدار التراخيص.</li>
+        <li>منح الجامعة منصة تعليمية متكاملة (FutureX) بهوية الجامعة واستضافتها <b>دون أي تكاليف</b>.</li>
+        <li>الإشراف على رقمنة المحتوى وإنتاج الفيديوهات عبر شركات إنتاج مؤهلة.</li>
+        <li>بناء بنوك الأسئلة للاختبارات النهائية الشاملة والتنسيق مع مراكز الاختبار المعتمدة.</li>
+        <li class="more-items">التعاقد مع المؤلفين والمحكمين وأعضاء هيئة التدريس الذين ترشحهم الجامعة.</li>
+        <li class="more-items">الدعم الفني الكامل للمتعلمين والمعلمين وتدريب أعضاء هيئة التدريس على المنصة.</li>
+        <li class="more-items">الحملات الإعلامية والتسويقية للبرامج وإدارة التواصل الاجتماعي.</li>
+        <li class="more-items">التقييم وقياس الأثر ومتابعة الخريجين وإعداد التقارير الدورية.</li>
+        <li class="more-items">تقديم 20% من المقاعد كمنح دراسية دون رسوم عبر الشركاء.</li>
+      </ul>
+      <button class="toggle">عرض المزيد ▾</button>
+    </div>
+
+    <div class="role r-u">
+      <div class="head"><div class="tag">صاحبة المحتوى الأكاديمي</div><h3>الجامعة — عمادة التعلم الإلكتروني والتعليم عن بعد</h3></div>
+      <ul>
+        <li>ترشيح المؤلفين والخبراء والمحكمين لتأليف وتحكيم محتوى البرنامج.</li>
+        <li>بناء وثيقة البرنامج: الأهداف، الخطة التدريبية، وصف المقررات، والمراجع.</li>
+        <li>تحديد أعضاء هيئة التدريس وتقديم المقررات المتزامنة ودعم المتعلمين وإرشادهم أكاديميًا.</li>
+        <li>مراجعة طلبات القبول واتخاذ قرارات القبول وإدارة الفصول الافتراضية.</li>
+        <li class="more-items">الالتزام بالاعتراف بالبرنامج ضمن الخطط الأكاديمية وإتاحة معادلته بالمقررات الجامعية.</li>
+        <li class="more-items">تحديد رسوم البرنامج ومراجعتها دوريًا (لا يوجد حد أدنى، والحد الأقصى 2000 ريال للساعة المعتمدة).</li>
+        <li class="more-items">بناء جدول الفصول الافتراضية الإثرائية المتزامنة والالتزام به.</li>
+        <li class="more-items">دعم الحملات الإعلامية عبر فريق العلاقات العامة بالجامعة.</li>
+      </ul>
+      <button class="toggle">عرض المزيد ▾</button>
+    </div>
+
+    <div class="role r-s">
+      <div class="head"><div class="tag">الشريك القطاعي / صاحب الاختصاص</div><h3>هيئة المساحة الجيولوجية السعودية</h3></div>
+      <ul>
+        <li>تحديد المهارات والجدارات المطلوبة فعليًا في قطاع علوم الأرض والمساحة الجيولوجية.</li>
+        <li>المشاركة في تصميم وتطوير المحتوى الأكاديمي مع الجامعة لضمان توافقه مع احتياجات العمل.</li>
+        <li>الاطلاع على المحتوى المقدم والموافقة على مناسبته قبل التقديم.</li>
+        <li>إشراك خبرائها الممارسين ضمن فريق التأليف إلى جانب أعضاء هيئة التدريس.</li>
+        <li class="more-items">توفير فرص تدريبية للخريجين وتقديم دعم مادي أو لوجستي للبرامج.</li>
+        <li class="more-items">ترشيح منسوبيها ومستفيديها للالتحاق بالبرامج والاستفادة من المنح المخصصة.</li>
+        <li class="more-items">تقديم توصيات مستمرة حول البرامج ومحتواها لضمان مواكبتها لتطورات القطاع.</li>
+      </ul>
+      <button class="toggle">عرض المزيد ▾</button>
+    </div>
+
+    <div class="role r-b">
+      <div class="head"><div class="tag">قناة الاحتياج الوطنية</div><h3>المجالس القطاعية للمهارات</h3></div>
+      <ul>
+        <li>الدعم في تحديد المهارات المطلوبة في سوق العمل على مستوى القطاعات.</li>
+        <li>تحديد أولويات الاحتياج من المهارات وفق مرئيات أعضاء المجلس.</li>
+        <li>تقديم توصيات حول البرامج ومحتواها لضمان توافقها مع احتياجات السوق.</li>
+        <li class="more-items">تزويد المركز الوطني بمتطلبات القطاعات ليبني عليها بطاقات البرامج المقترحة.</li>
+      </ul>
+      <button class="toggle">عرض المزيد ▾</button>
+    </div>
+  </div>
+
+  <div class="partner-note">
+    <h3>⛰️ لماذا هذه الشراكة فرصة للطرفين؟</h3>
+    <p>
+      تمتلك هيئة المساحة الجيولوجية الخبرة الميدانية والمعرفة الدقيقة باحتياجات قطاع علوم الأرض،
+      وتمتلك جامعة الملك عبدالعزيز الكفاءة الأكاديمية والبنية التعليمية،
+      بينما يوفّر المركز الوطني المنصة والترخيص والرقمنة والاعتماد دون تكلفة على الجامعة.
+      بذلك تتحول خبرات الهيئة إلى برامج قصيرة معتمدة تخدم منسوبيها والباحثين عن عمل في القطاع،
+      وتُحتسب شهاداتها ضمن مسارات مؤهلات أعلى — بما يحقق مستهدفات رؤية 2030 في تنمية القدرات البشرية.
+    </p>
+  </div>
+</section>
+
+<footer>
+  أُعدّت هذه اللوحة بالاعتماد على <b>دليل الجامعات لمبادرة البرامج الجامعية القصيرة MicroX (2024–2027)</b> — المركز الوطني للتعليم الإلكتروني.
+</footer>
+
+</div>
+
+<script>
+/* ---------- tabs ---------- */
+const tabs=document.querySelectorAll('nav.tabs button');
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+  t.classList.add('active');t.setAttribute('aria-selected','true');
+  document.querySelectorAll('section.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(t.dataset.panel).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* ---------- hierarchy layers ---------- */
+document.querySelectorAll('.layer').forEach(l=>{
+  l.addEventListener('click',()=>l.classList.toggle('active'));
+});
+document.querySelector('.layer[data-open]').classList.add('active');
+
+/* ---------- guiding principles ---------- */
+const principles=[
+ ["مرن","مسارات تعليمية قابلة للتخصيص، يتقدم فيها المتعلم بالوتيرة التي تناسبه وبحسب معارفه السابقة واهتماماته."],
+ ["قصير","تُقسَّم الموضوعات المعقدة إلى أجزاء صغيرة يسهل تعلمها وتطبيقها مباشرة في بيئة العمل، وفق منهجية DNA."],
+ ["قائم على مخرجات التعلم","يُبنى البرنامج على مخرجات تعلم محددة تُمكِّن المتعلم من مهارات ومعارف في مجال ما بطريقة مركزة."],
+ ["قابل للتجميع","برامج مستقلة بذاتها بساعات معتمدة، يمكن تجميعها للحصول على مؤهل أعلى وفق الإطار الوطني للمؤهلات."],
+ ["رقمي","يُقدَّم إلكترونيًا (متزامن / غير متزامن / كلاهما) وينتهي بشهادة تعليمية رقمية."],
+ ["مرتبط بسوق العمل","يُصمَّم بما يتماشى مع متطلبات القطاعات دائمة التطور — وهنا يأتي دور خبراء الهيئة."],
+ ["معترف به","معتمد أكاديميًا لدى المؤسسات التعليمية، ومعترف به لدى أصحاب العمل في القطاعات التخصصية."],
+ ["مرتبط باختبارات محوكمة","يُقاس تحقق المهارات عبر مقاييس ممنهجة بمعايير واضحة واختبار نهائي شامل حضوري."],
+ ["قائم بالشراكة والتعاون","يُبنى بالتعاون بين الجامعات وأصحاب العمل والمجالس القطاعية وخبراء القطاع — كما في شراكتنا اليوم."]
+];
+const pg=document.getElementById('pillGrid'),pd=document.getElementById('pillDetail');
+principles.forEach((p,i)=>{
+  const b=document.createElement('button');
+  b.className='pill';b.type='button';b.textContent=(i+1)+". "+p[0];
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    pd.innerHTML="<b>"+p[0]+":</b> "+p[1];
+  });
+  pg.appendChild(b);
+});
+
+/* ---------- flowchart ---------- */
+const steps=[
+ {t:"تحديد الاحتياج",cls:"s",who:"الهيئة + المجالس القطاعية",p:"رصد المهارات المطلوبة فعليًا في قطاع علوم الأرض.",
+  meta:"نقطة البداية — من الميدان إلى التعليم",
+  d:["تحدد هيئة المساحة الجيولوجية والمجالس القطاعية المهارات والجدارات ذات الأولوية في القطاع.","تُرفع الاحتياجات للمركز الوطني وفق نموذج معتمد.","يحلل المركز الاحتياج ويحدد البرامج الجاهزة والتي تحتاج إلى بناء."]},
+ {t:"بطاقة البرنامج",cls:"c",who:"المركز الوطني",p:"تصور أولي مقترح للبرنامج يُرسل للجامعة.",
+  meta:"وثيقة من صفحة واحدة — وترد الجامعة خلال أسبوعين",
+  d:["يبني المركز التصور الأولي لبطاقة البرنامج وفق متطلبات القطاع.","تتضمن البطاقة: الاسم، القطاع، المجال، الساعات، المقررات، والمهن المرتبطة.","على الجامعة الرد بالموافقة أو الملاحظات خلال أسبوعين من الاستلام."]},
+ {t:"بناء وثيقة البرنامج",cls:"m",who:"الجامعة + خبراء الهيئة",p:"فريق التأليف يبني المحتوى العلمي كاملًا.",
+  meta:"قلب العملية الأكاديمية — تعاون مباشر بين الطرفين",
+  d:["يتكوّن فريق التأليف من أعضاء هيئة التدريس بالجامعة وخبراء ممارسين من الهيئة.","تشمل الوثيقة: الأهداف العامة والتفصيلية، الخطة التدريبية، وصف المقررات، الساعات الفعلية والمعتمدة، والمراجع.","يتعاقد المركز مع المؤلفين والمحكمين الذين ترشحهم الجامعة."]},
+ {t:"بناء بنك الأسئلة",cls:"m",who:"الجامعة + المركز",p:"إعداد أسئلة الاختبار النهائي الشامل.",
+  meta:"الاختبار الشامل هو أساس اجتياز البرنامج",
+  d:["تُبنى بنوك أسئلة للاختبار النهائي الشامل لكل برنامج.","يُكتفى بالاختبار النهائي لتحديد الاجتياز دون تقييمات أثناء رحلة التعلم.","يُعقد الاختبار حضوريًا في مراكز الاختبار المعتمدة من المركز الوطني فقط."]},
+ {t:"التحكيم والاعتماد",cls:"u",who:"الجامعة",p:"مراجعة علمية للمحتوى ثم اعتماده رسميًا.",
+  meta:"ضمان الجودة الأكاديمية",
+  d:["يُحكَّم المحتوى من محكمين متخصصين تختارهم الجامعة.","تعتمد الجامعة الوثيقة النهائية وتلتزم بالاعتراف بالبرنامج ضمن خططها الأكاديمية.","يُرسل المحتوى المعتمد للمركز لبدء مرحلة الرقمنة."]},
+ {t:"الرقمنة",cls:"c",who:"المركز الوطني",p:"تحويل المحتوى إلى مواد رقمية تفاعلية.",
+  meta:"مدة تقريبية: شهر — عبر شركات إنتاج مؤهلة",
+  d:["يشرف المركز على تحويل المواد إلى صيغ رقمية تفاعلية وفيديوهات عالية الجودة.","يُبنى المحتوى وفق منهجية الكائنات التعليمية القابلة لإعادة الاستخدام (DNA).","تلتزم شركات الإنتاج بمتطلبات الجامعة في نوع المورد وطريقة عرضه."]},
+ {t:"الاستضافة واختبار الرحلة",cls:"c",who:"المركز الوطني",p:"رفع البرنامج على منصة FutureX وتجربته.",
+  meta:"مدة تقريبية: أسبوع",
+  d:["يُرفع المحتوى كاملًا في منصة الجامعة على FutureX ويُنسَّق بالكامل.","تُنفَّذ اختبارات تجريبية لرحلة المتعلم للحصول على التغذية الراجعة وإجراء التحسينات.","تُربط المنصة بمركز الاختبار المعتمد وبوابة الدفع (المدفوعات لحساب الجامعة مباشرة)."]},
+ {t:"الإطلاق 🎉",cls:"g",who:"الجامعة + المركز",p:"برنامج معتمد ومرخص متاح للتسجيل.",
+  meta:"برنامج جامعي قصير معترف به ومرخص من المركز الوطني",
+  d:["يُطلق البرنامج على المنصة ويبدأ استقبال التسجيل.","يحصل المجتازون على شهادة رقمية بشعار الجامعة فور اجتياز الاختبار الشامل.","تستمر متابعة الأداء وقياس الأثر وجمع التغذية الراجعة للتحسين المستمر."]}
+];
+const flow=document.getElementById('flow');
+steps.forEach((s,i)=>{
+  const div=document.createElement('div');
+  div.className='step '+s.cls+(i===0?' selected':'');
+  div.innerHTML=`<div class="box" role="button" tabindex="0" aria-label="المرحلة ${i+1}: ${s.t}">
+    <span class="idx">${i+1}</span>
+    <span class="who">${s.who}</span>
+    <h4>${s.t}</h4><p>${s.p}</p>
+    ${ (i+1)%4!==0 && i<steps.length-1 ? '<span class="arrow">◀</span>' : '' }
+  </div>`;
+  const sel=()=>{
+    document.querySelectorAll('.step').forEach(x=>x.classList.remove('selected'));
+    div.classList.add('selected');
+    showDetail(i);
+  };
+  div.querySelector('.box').addEventListener('click',sel);
+  div.querySelector('.box').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();sel();}});
+  flow.appendChild(div);
+});
+const colors={u:'#6D28D9',c:'#0E9C9C',s:'#C77D0A',g:'#178A52',m:'linear-gradient(135deg,#6D28D9,#0E9C9C)'};
+function showDetail(i){
+  const s=steps[i];
+  document.getElementById('fdNum').textContent=i+1;
+  document.getElementById('fdNum').style.background=colors[s.cls];
+  document.getElementById('fdTitle').textContent=s.t;
+  document.getElementById('fdMeta').textContent="الجهة المسؤولة: "+s.who+" · "+s.meta;
+  document.getElementById('fdList').innerHTML=s.d.map(x=>"<li>"+x+"</li>").join("");
+}
+showDetail(0);
+
+/* ---------- roles expand ---------- */
+document.querySelectorAll('.role .toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const r=btn.closest('.role');
+    r.classList.toggle('open');
+    btn.textContent=r.classList.contains('open')?'عرض أقل ▴':'عرض المزيد ▾';
+  });
+});
+</script>
+</body>
+</html>
